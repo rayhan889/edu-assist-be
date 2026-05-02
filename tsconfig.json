@@ -4,7 +4,9 @@
     "./dist",
     // "**/*.test.ts",
     "jest.config.js",
-    "eslint.config.mjs"
+    "eslint.config.mjs",
+    "prettier.config.mjs",
+    "drizzle.config.ts"
   ],
   "ts-node": {
     "transpileOnly": true,

@@ -1,0 +1,44 @@
+services:
+  postgresdb:
+    image: postgres:16.2
+    restart: unless-stopped
+    networks:
+      - eduassist_net
+    volumes:
+      - eduassist_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: /var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${POSTGRES_USER}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7.2
+    restart: unless-stopped
+    networks:
+      - eduassist_net
+    volumes:
+      - eduassist_redis_data:/data
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  eduassist_postgres_data:
+  eduassist_redis_data:
+  eduassist_minio_data:
+
+networks:
+  eduassist_net:
+    driver: bridge
