@@ -1,0 +1,20 @@
+{
+  "user_id": "RAY-2026-001",
+  "persona": {
+    "educational_level": "Undergraduate",
+    "difficulty_level": "Beginner",
+    "major": "Computer Science",
+    "specializations": ["Data Science", "Artificial Intelligence"],
+    "preferred_subjects": [
+      "Data Structures",
+      "Linear Algebra",
+      "Discrete Mathematics"
+    ],
+    "learning_style": {
+      "response_tone": "Casual",
+      "presentation_format": "Step-by-step",
+      "technical_density": "Balanced"
+    },
+    "strict_mode": true
+  }
+}
