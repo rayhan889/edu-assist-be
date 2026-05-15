@@ -1,4 +1,5 @@
 import { defineConfig } from 'drizzle-kit';
+import { env } from './src/config/env';
 
 export default defineConfig({
   schema: './src/models',
@@ -7,6 +8,6 @@ export default defineConfig({
   strict: true,
   verbose: true,
   dbCredentials: {
-    url: process.env.POSTGRES_URL!,
+    url: env.postgresUrl,
   },
 });

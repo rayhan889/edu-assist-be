@@ -1,12 +1,18 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application, Router } from 'express';
 import { router as userRoutes } from './routes/user.routes';
+import { authRoutes } from './routes/auth.routes';
+import passport from './auth/passport';
+import cookieParser from 'cookie-parser';
 
 const app: Application = express();
 
-app.use('/users', userRoutes);
+const apiV1 = Router();
+apiV1.use('/users', userRoutes);
+apiV1.use('/auth', authRoutes);
 
-app.use('/', (req: Request, res: Response): void => {
-  res.json({ message: "Miley, what's good?" });
-});
+app.use(express.json());
+app.use(cookieParser());
+app.use(passport.initialize());
+app.use('/api/v1', apiV1);
 
 export default app;
