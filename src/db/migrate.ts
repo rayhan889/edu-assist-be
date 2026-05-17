@@ -4,7 +4,11 @@ import { Client } from 'pg';
 import 'dotenv/config';
 
 async function runMigration() {
-  const client = new Client({ connectionString: process.env.POSTGRES_URL });
+  const isProduction = process.env.NODE_ENV === 'production';
+  const client = new Client({
+    connectionString: process.env.POSTGRES_URL,
+    ssl: isProduction ? { rejectUnauthorized: false } : false,
+  });
   await client.connect();
   const db = drizzle(client);
 
