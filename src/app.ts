@@ -15,4 +15,8 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use('/api/v1', apiV1);
 
+app.get('/', (req, res) => {
+  res.json({ message: "Miley, what's good?" });
+});
+
 export default app;

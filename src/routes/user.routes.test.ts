@@ -3,7 +3,7 @@ import app from '../app';
 
 describe('User routes', () => {
   test('Get all users', async () => {
-    const res = await request(app).get('/users');
+    const res = await request(app).get('/api/v1/users');
     expect(res.body).toEqual(['Nicki', 'Ariana', 'Lana', 'Miley']);
   });
 });

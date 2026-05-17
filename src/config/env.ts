@@ -9,6 +9,7 @@ function requireEnv(key: string): string {
 }
 
 export const env = {
+  nodeEnv: process.env.NODE_ENV || 'development',
   port: Number.parseInt(process.env.PORT || '8080', 10),
   postgresUrl: requireEnv('POSTGRES_URL'),
   googleClientId: requireEnv('GOOGLE_CLIENT_ID'),
