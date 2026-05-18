@@ -12,4 +12,8 @@ jobs:
 
     steps:
       - name: Trigger Render Deploy
-        run: curl -s "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+        if: github.ref == 'refs/heads/main'
+        env:
+          deploy_url: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          curl "$deploy_url"
